@@ -20,7 +20,8 @@ where $\mu_0 = 0$ represents the utility - for the customers - of buying nothing
 convenient to assume that selling nothing does come with a revenue $r_0 \geq 0$ (that is, however, usually zero).\
 With all of the above, the problem can be posed as the following combinatorial optimization problem :
 
-$$ \text{(AP)} \quad \max_{S \subseteq \mathcal{I}} \Bigg\{ r_0 \cdot P_0(S) + \sum_{i \in S} r_i \cdot P_i(S) \Bigg\}$$
+$$ \text{(AP)} \quad \max_{S \subseteq \mathcal{I}} \{ r_0 \cdot P_0(S) + \sum_{i \in S} r_i \cdot P_i(S) \}$$
+
 ## How to run the code
 
 press "run" button lol
