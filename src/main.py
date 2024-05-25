@@ -3,6 +3,7 @@ from gurobipy import GRB
 import numpy as np
 import pandas as pd
 import apl
+import APC_MILP
 
 data_dir_path = "data/"
 instances_data_revenue = pd.read_csv(data_dir_path + "small-r.csv",sep=';',header=None)
@@ -16,10 +17,17 @@ def read_instance(instances_data_revenue, instances_data_mu, instance=0):
 
 if __name__ == "__main__":
     data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, instance=0)
-    apl_model = apl.APL_model(data_revenue, data_mu)
+    """apl_model = apl.APL_model(data_revenue, data_mu)
     apl_model.optimize()
     print("Optimal value:", apl_model.objVal)
     print("Optimal solution:")
     for v in apl_model.getVars():
+        print(v.varName, v.x)"""
+    
+    apc_milp_model = APC_MILP.APC_MILP(data_revenue, data_mu)
+    apc_milp_model.optimize()
+    print("Optimal value:", apc_milp_model.objVal)
+    print("Optimal solution:")
+    for v in apc_milp_model.getVars():
         print(v.varName, v.x)
 
