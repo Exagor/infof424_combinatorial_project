@@ -5,20 +5,21 @@ import pandas as pd
 
 data_dir_path = "data/"
 instances_data_revenue = pd.read_csv(data_dir_path + "small-r.csv",sep=';')
-instances_data_prob = pd.read_csv(data_dir_path + "small-mu.csv",sep=';')
+instances_data_mu = pd.read_csv(data_dir_path + "small-mu.csv",sep=';')
 print(instances_data_revenue.head()) #each column is a new instance of the problem
 print(instances_data_revenue.shape)
 
 
-def read_data(instances_data_revenue, instances_data_prob, instance=1):
+def read_instance(instances_data_revenue, instances_data_mu, instance=0):
     data_revenue = instances_data_revenue.iloc[:,instance] #we use iloc to select the column
-    data_prob = instances_data_prob.iloc[:,instance]
-    return data_revenue.tolist(), data_prob.tolist()
+    data_mu = instances_data_mu.iloc[:,instance]
+    return data_revenue.tolist(), data_mu.tolist()
 
 def assortment_planning(data_revenue, data_prob, time_limit=60):
     model = gp.Model("Assortment Planning")
     model.setParam('TimeLimit', time_limit)
     model.setParam('OutputFlag', 1) # 1 for verbose, 0 for silent
+    # model.setParam('Method', 0) # 0 for primal simplex, 1 for dual simplex, 2 for barrier, 3 for concurrent, 4 for deterministic concurrent
 
     # define variables
     I = data_revenue.shape[0] # set of products
@@ -52,10 +53,9 @@ def assortment_planning(data_revenue, data_prob, time_limit=60):
     return model
 
 if __name__ == "__main__":
-    data_revenue, data_prob = read_data(instances_data_revenue, instances_data_prob, 1)
+    data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, 0)
     print(data_revenue)
-    print(data_prob)
-    print(type(data_revenue))
+    print(data_mu)
     # assortment_model = assortment_planning(data_revenue, data_prob)
     # assortment_model.optimize()
 
