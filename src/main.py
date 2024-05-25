@@ -5,9 +5,8 @@ import pandas as pd
 import apl
 
 data_dir_path = "data/"
-instances_data_revenue = pd.read_csv(data_dir_path + "small-r.csv",sep=';')
-instances_data_mu = pd.read_csv(data_dir_path + "small-mu.csv",sep=';')
-
+instances_data_revenue = pd.read_csv(data_dir_path + "small-r.csv",sep=';',header=None)
+instances_data_mu = pd.read_csv(data_dir_path + "small-mu.csv",sep=';',header=None)
 
 def read_instance(instances_data_revenue, instances_data_mu, instance=0):
     data_revenue = instances_data_revenue.iloc[:,instance] #we use iloc to select the column
@@ -16,7 +15,7 @@ def read_instance(instances_data_revenue, instances_data_mu, instance=0):
 
 
 if __name__ == "__main__":
-    data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, instance=5)
+    data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, instance=0)
     apl_model = apl.APL_model(data_revenue, data_mu)
     apl_model.optimize()
     print("Optimal value:", apl_model.objVal)

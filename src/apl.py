@@ -18,14 +18,14 @@ def APL_model(data_revenue, data_mu, time_limit=60):
     # y0 = model.addVar(lb=0, vtype=GRB.CONTINUOUS, name="y0")
 
     # define constraints
-    model.addConstr(y[0] + gp.quicksum(y[i] for i in range(I))==1, name="c0")
-    for i in range(I):
+    model.addConstr(y[0] + gp.quicksum(y[i] for i in range(1,I))==1, name="c0")
+    for i in range(1,I):
         model.addConstr(y[i] <= y[0]*np.exp(mu[i]), name="c1_" + str(i)) #all constraints for i in I
 
     model.update()
 
     # define objective function
-    model.setObjective(r[0]*y[0] + gp.quicksum(r[i]*y[i] for i in range(I)), GRB.MAXIMIZE)
+    model.setObjective(r[0]*y[0] + gp.quicksum(r[i]*y[i] for i in range(1,I)), GRB.MAXIMIZE)
     model.update()
 
     return model
