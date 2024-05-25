@@ -13,6 +13,7 @@ if __name__ == "__main__":
     instances_data_revenue = pd.read_csv(data_dir_path + size_name+"-r.csv",sep=';',header=None)
     instances_data_mu = pd.read_csv(data_dir_path + size_name + "-mu.csv",sep=';',header=None)
     data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, instance=0)
+    run_all_instances(delete_result=False) # Run all instances and don't delete previous results
     
     # AP-L
     # apl_model = APL_model(data_revenue, data_mu)
