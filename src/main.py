@@ -3,7 +3,7 @@ from APL import *
 from APC_MILP import *
 
 data_dir_path = "data/"
-size_name = "large" #or medium or large
+size_name = "small" #or medium or large
 instances_data_revenue = pd.read_csv(data_dir_path + size_name+"-r.csv",sep=';',header=None)
 instances_data_mu = pd.read_csv(data_dir_path + size_name + "-mu.csv",sep=';',header=None)
 
