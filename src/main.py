@@ -15,19 +15,27 @@ def read_instance(instances_data_revenue, instances_data_mu, instance=0):
     return data_revenue.tolist(), data_mu.tolist()
 
 
+    
+
 if __name__ == "__main__":
     data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, instance=0)
-    """apl_model = apl.APL_model(data_revenue, data_mu)
+    apl_model = apl.APL_model(data_revenue, data_mu)
     apl_model.optimize()
     print("Optimal value:", apl_model.objVal)
     print("Optimal solution:")
     for v in apl_model.getVars():
-        print(v.varName, v.x)"""
+        print(v.varName, v.x)
     
+    """
     apc_milp_model = APC_MILP.APC_MILP(data_revenue, data_mu)
     apc_milp_model.optimize()
     print("Optimal value:", apc_milp_model.objVal)
     print("Optimal solution:")
     for v in apc_milp_model.getVars():
         print(v.varName, v.x)
+    """
+    greedy_revenue, greedy_combination = apl.greedy_algorithm(data_revenue, data_mu)
+    print("Greedy algorithm:")
+    print("Optimal value:", greedy_revenue)
+    print("Optimal solution:", greedy_combination)
 
