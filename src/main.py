@@ -4,13 +4,16 @@ import numpy as np
 import pandas as pd
 
 data_dir_path = "data/"
-data_revenue = pd.read_csv(data_dir_path + "small-r.csv",sep=';')
-data_prob = pd.read_csv(data_dir_path + "small-mu.csv",sep=';')
-print(data_revenue.head())
-print(data_revenue.shape)
+instances_data_revenue = pd.read_csv(data_dir_path + "small-r.csv",sep=';')
+instances_data_prob = pd.read_csv(data_dir_path + "small-mu.csv",sep=';')
+print(instances_data_revenue.head()) #each column is a new instance of the problem
+print(instances_data_revenue.shape)
 
-def read_data(data_revenue, data_prob):
-    return data_revenue, data_prob
+
+def read_data(instances_data_revenue, instances_data_prob, instance=1):
+    data_revenue = instances_data_revenue.iloc[:,instance] #we use iloc to select the column
+    data_prob = instances_data_prob.iloc[:,instance]
+    return data_revenue.tolist(), data_prob.tolist()
 
 def assortment_planning(data_revenue, data_prob, time_limit=60):
     model = gp.Model("Assortment Planning")
@@ -49,7 +52,10 @@ def assortment_planning(data_revenue, data_prob, time_limit=60):
     return model
 
 if __name__ == "__main__":
-    print("Hi word")
+    data_revenue, data_prob = read_data(instances_data_revenue, instances_data_prob, 1)
+    print(data_revenue)
+    print(data_prob)
+    print(type(data_revenue))
     # assortment_model = assortment_planning(data_revenue, data_prob)
     # assortment_model.optimize()
 
