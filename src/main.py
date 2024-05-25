@@ -5,14 +5,15 @@ from AP import *
 from utilities import *
 from instances import *
 
-data_dir_path = "data/"
-size_name = "small" #or medium or large or extralarge
-
-instances_data_revenue = pd.read_csv(data_dir_path + size_name+"-r.csv",sep=';',header=None)
-instances_data_mu = pd.read_csv(data_dir_path + size_name + "-mu.csv",sep=';',header=None)
 
 if __name__ == "__main__":
+    
+    data_dir_path = "data/"
+    size_name = "medium"
+    instances_data_revenue = pd.read_csv(data_dir_path + size_name+"-r.csv",sep=';',header=None)
+    instances_data_mu = pd.read_csv(data_dir_path + size_name + "-mu.csv",sep=';',header=None)
     data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, instance=0)
+    
     # AP-L
     # apl_model = APL_model(data_revenue, data_mu)
     # apl_model.optimize()

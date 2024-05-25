@@ -4,8 +4,9 @@ import numpy as np
 
 def APC_MILP(data_revenue, data_mu, time_limit=60):
     model = gb.Model("APC_MILP")
+    model.setParam('OutputFlag', 0) 
     model.setParam('TimeLimit', time_limit)
-    model.setParam('OutputFlag', 1) 
+
 
     # Define parameters
     r = data_revenue
