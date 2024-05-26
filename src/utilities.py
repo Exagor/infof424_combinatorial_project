@@ -10,7 +10,7 @@ def read_instance(instances_data_revenue, instances_data_mu, instance=0):
 def save_result_gurobi(model, filename, instance_nb):
     with open(filename, mode='a',newline="") as file:
         writer = csv.writer(file, delimiter=',')
-        writer.writerow([instance_nb, model.objVal, model.Runtime])
+        writer.writerow([instance_nb, model.objVal, "{:.19f}".format(model.Runtime)])
 
 def save_result(score, time, filename, instance_nb):
     with open(filename, mode='a',newline="") as file:

@@ -2,7 +2,7 @@ import pandas as pd
 
 def stats_all() :
     models = ["AP", "APL", "APC_MILP"]
-    sizes = [10, 5000, 100000, 1000000]
+    sizes = [10, 5000, 1000000]
 
     for model in models:
         for size in sizes:
@@ -14,8 +14,19 @@ def stats_all() :
             print(analysis)
 
 def stats_APC_MILP():
-    print("yello wirld ?")
+    sizes = ["10", "5000", "1000000"]
+    p = ["1", "N5", "N2", "N"]
+
+
+    for size in sizes:
+        for p in p:
+            path = "results/APC_MILP/results_APC_MILP_" + size + "_" + p + ".csv"
+            data = pd.read_csv(path, header=None, names=['instance', 'optimal value', 'time'])
+            analysis = data.agg(['min', 'mean', 'max'])
+            analysis = analysis.drop('instance', axis=1)
+            print("Results for APC_MILP with", size, "instances for p =", p ,":")
+            print(analysis)
 
 
 
-stats_all()
+stats_APC_MILP()
