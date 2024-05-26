@@ -1,5 +1,8 @@
 # INFO-F424 – Combinatorial Optimization Project
 
+June 2024
+By Achten Alexandre and Boistel Julien\
+
 ## Introduction
 
 In this project, we focus on the Assortment Planning Problem (AP), where a retailer wants to determine
@@ -24,4 +27,50 @@ $$ \text{(AP)} \quad \max_{S \subseteq \mathcal{I}} \{ r_0 \cdot P_0(S) + \sum_{
 
 ## How to run the code
 
-press "run" button lol
+### Install the required packages
+
+```sh
+pip install -r requirements.txt
+```
+
+### Modify the main.py file
+
+You can modify the parameters of the problem, such as the revenue file and the mean utilities file directly in the main.\
+Then you can run the main.py file to solve the problem.
+
+```sh
+python main.py
+```
+
+OR you can run the main.py file with the following arguments:
+
+```sh
+python main.py -r <revenue_file> -mu <mean_utilities_file> -m <modelisation> -results <results_directory>
+```
+
+Where the -m argument is the modelisation you want to use.\
+The possible values are:
+
+- 1: AP modelisation
+- 2: AP-L modelisation
+- 3: APC-MILP modelisation
+- 4: APC-IP modelisation
+
+### Example
+
+```sh
+python main.py -r data/small-r.csv -mu data/small-mu.csv -m 1 -results results/
+```
+
+### Results
+
+The results will be saved in a file having the following template: `results_<modelisation>_<size_instance>.csv`.
+Where the 3 columns are the instance name, the optimal value and the running time. WARNING : if several instances of the same size are run, the results will be appended to the same file
+
+Example:
+
+|Instance|Optimal Value|Running Time (s)|
+|--------|-------------|------------|
+|1|100| 0.5|
+|2|200| 1.2|
+|3|150| 0.8|
