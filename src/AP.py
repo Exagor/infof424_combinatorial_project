@@ -27,7 +27,7 @@ def greedy_algorithm(r, mu):
 def probability_of_choice(mu,i,S):
     return (np.exp(mu[i]))/(1+sum(np.exp(mu[j]) for j in S))
 
-def greedy_algorithm2(r, mu):
+def greedy_algorithm_AP(r, mu):
     I = len(r)
     S=[]
     # S.append(0)
