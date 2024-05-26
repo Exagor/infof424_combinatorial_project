@@ -15,10 +15,10 @@ def stats_all() :
 
 def stats_APC_MILP():
     sizes = ["10", "5000", "1000000"]
-    p = ["1", "N5", "N2", "N"]
+    P = ["1", "N5", "N2", "N"]
 
     for size in sizes:
-        for p in p:
+        for p in P:
             path = "results/APC_MILP/results_APC_MILP_" + size + "_" + p + ".csv"
             data = pd.read_csv(path, header=None, names=['instance', 'optimal value', 'time'])
             analysis = data.agg(['min', 'mean', 'max'])
