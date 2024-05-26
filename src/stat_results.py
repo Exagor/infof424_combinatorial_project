@@ -17,7 +17,6 @@ def stats_APC_MILP():
     sizes = ["10", "5000", "1000000"]
     p = ["1", "N5", "N2", "N"]
 
-
     for size in sizes:
         for p in p:
             path = "results/APC_MILP/results_APC_MILP_" + size + "_" + p + ".csv"
@@ -26,7 +25,5 @@ def stats_APC_MILP():
             analysis = analysis.drop('instance', axis=1)
             print("Results for APC_MILP with", size, "instances for p =", p ,":")
             print(analysis)
-
-
 
 stats_APC_MILP()

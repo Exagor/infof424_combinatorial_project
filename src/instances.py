@@ -30,9 +30,9 @@ def APC_MILP_instances(instances_data_revenue, instances_data_mu):
         save_result_gurobi(apc_milp_model, "results/results_APC_MILP_"+str(len(data_revenue)-1)+".csv", instance_nb=i)
 
 
-def run_all_instances(AP=True, APL=True, APCMILP=True, delete_result=False):
+def run_all_sizes_and_instances(AP=True, APL=True, APCMILP=True, delete_result=False):
     data_dir_path = "data/"
-    names = ["small", "medium", "large", "extralarge"]
+    names = ["small", "medium", "extralarge"] #["small", "medium", "extralarge"]
     if delete_result:
         delete_files("results/")
 
