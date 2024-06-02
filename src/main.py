@@ -50,19 +50,20 @@ if __name__ == "__main__":
     # size_name = "data/small"
     # instances_data_revenue = pd.read_csv(data_dir_path + size_name+"-r.csv",sep=';',header=None)
     # instances_data_mu = pd.read_csv(data_dir_path + size_name + "-mu.csv",sep=';',header=None)
-    # data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, instance=0)
+     data_revenue, data_mu = read_instance(instances_data_revenue, instances_data_mu, instance=0)
 
     # run all instances
-    run_all_sizes_and_instances(AP=False, APL=False, APCMILP=False, delete_result=False) # Run all instances and don't delete previous results
+    # run_all_sizes_and_instances(AP=False, APL=False, APCMILP=False, delete_result=False) # Run all instances and don't delete previous results
 
     # APC-IP
-    # r = data_revenue[1:]
-    # mu = data_mu[1:]
-    # langrangian_combination, langrangian_y0, langrangian_obj_val = lagrangian_dichotomic_search(mu, r, data_revenue[0], 10, len(r))
-    # print("Lagrangian relaxation:")
-    # print("Optimal value:", langrangian_obj_val)
-    # print("Optimal solution:", langrangian_combination)
-    # print("y0:", langrangian_y0)
+     #r = data_revenue[1:]
+     #mu = data_mu[1:]
+     N = len(data_revenue)
+     langrangian_combination, langrangian_y0, langrangian_obj_val = lagrangian_dichotomic_search(data_mu, data_revenue, N, N)
+     print("Lagrangian relaxation:")
+     print("Optimal value:", langrangian_obj_val)
+     print("Optimal solution:", langrangian_combination)
+     print("y0:", langrangian_y0)
     
     # AP-L
     # apl_model = APL_model(data_revenue, data_mu)
