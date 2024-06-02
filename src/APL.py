@@ -8,7 +8,6 @@ def APL_model(data_revenue, data_mu, time_limit=60):
     model.setParam('OutputFlag', 0) # 1 for verbose, 0 for silent
     model.setParam('TimeLimit', time_limit)
 
-
     # define parameters (constants for constraints and objective function)
     I = len(data_revenue) # number of products
     r = data_revenue # revenue of product i
@@ -16,7 +15,6 @@ def APL_model(data_revenue, data_mu, time_limit=60):
 
     # define variables
     y = model.addVars(I,lb=0, vtype=GRB.CONTINUOUS, name="y") #lb for lower bound
-    # y0 = model.addVar(lb=0, vtype=GRB.CONTINUOUS, name="y0")
 
     # define constraints
     model.addConstr(y[0] + gp.quicksum(y[i] for i in range(1,I))==1, name="c0")

@@ -48,18 +48,17 @@ OR you can run the main.py file with the following arguments:
 python main.py -r <revenue_file> -mu <mean_utilities_file> -m <modelisation> -results <results_directory>
 ```
 
-Where the -m argument is the modelisation you want to use.\
-The possible values are:
+The possible values for the modelisationare:
 
-- 1: AP modelisation
-- 2: AP-L modelisation
-- 3: APC-MILP modelisation
-- 4: APC-IP modelisation
+- 0: AP modelisation
+- 1: AP-L modelisation
+- 2: APC-MILP modelisation
+- 3: APC-IP modelisation
 
 ### Example
 
 ```sh
-python main.py -r data/small-r.csv -mu data/small-mu.csv -m 1 -results results/
+python src/main.py -r data/small-r.csv -mu data/small-mu.csv -m 1 -results results/
 ```
 
 ### Results

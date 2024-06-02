@@ -1,7 +1,10 @@
+"""
+Run this file to have statistics about the instances
+"""
 import pandas as pd
 
 def stats_all() :
-    models = ["AP", "APL", "APC_MILP"]
+    models = ["AP", "APL", "APC_MILP", "APC_IP"]
     sizes = [10, 5000, 1000000]
 
     for model in models:
@@ -26,4 +29,5 @@ def stats_APC_MILP():
             print("Results for APC_MILP with", size, "instances for p =", p ,":")
             print(analysis)
 
+stats_all()
 stats_APC_MILP()

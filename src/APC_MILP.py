@@ -7,7 +7,6 @@ def APC_MILP(data_revenue, data_mu, time_limit=60):
     model.setParam('OutputFlag', 0) 
     model.setParam('TimeLimit', time_limit)
 
-
     # Define parameters
     r = data_revenue
     mu = data_mu

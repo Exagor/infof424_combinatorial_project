@@ -6,7 +6,6 @@ def probability_of_choice(mu,i,S):
 def greedy_algorithm_AP(r, mu):
     I = len(r)
     S=[]
-    # S.append(0)
 
     best_combination = []
     best_score = 0

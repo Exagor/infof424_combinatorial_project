@@ -8,7 +8,6 @@ def lagrangian_relaxation(n, mu, r, lambda_val, p):
     model.setParam('OutputFlag', 0) # 1 for verbose, 0 for silent
 
     # Define variables
-    #y0 = model.addVar(lb=0, vtype=gp.GRB.CONTINUOUS, name="y0")
     y = model.addVars(n,lb=0, vtype=gp.GRB.CONTINUOUS, name="y")
 
     # Define constraints
@@ -68,9 +67,7 @@ def lagrangian_dichotomic_search(mu, r, p, n, max_iter=100, tol=1e-6):
         if(lambda_up - lambda_low < tol):
             break
 
-    print(lbs)
-    print(obj_vals)
-    plot_bounds(obj_vals, lbs)
+    #plot_bounds(obj_vals, lbs) # Uncomment to plot the bounds
 
     return best_y[1:], best_y0, best_obj_val
 
