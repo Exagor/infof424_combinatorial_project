@@ -12,7 +12,7 @@ def lagrangian_relaxation(n, mu, r, lambda_val, p):
     y = model.addVars(n,lb=0, vtype=gp.GRB.CONTINUOUS, name="y")
 
     # Define constraints
-    model.addConstr(y[0] + gp.quicksum(y[i] for i in range(n)) == 1, name="c0")
+    model.addConstr(y[0] + gp.quicksum(y[i] for i in range(1, n)) == 1, name="c0")
     for i in range(1, n):
         model.addConstr(y[i] <= y[0] * np.exp(mu[i]), name="c1_" + str(i))
     
@@ -27,7 +27,9 @@ def lagrangian_relaxation(n, mu, r, lambda_val, p):
     y_val = [y[i].X for i in range(n)]
     obj_val = model.objVal
 
-    return y_val, y0_val, obj_val
+    lower_bound = r[0]*y0_val + sum(r[i]*y_val[i] for i in range(1,n))
+
+    return y_val, y0_val, obj_val, lower_bound
 
 def is_feasible(y, p):
     return sum(1 for yi in y if yi > 0) <= p
@@ -38,16 +40,18 @@ def lagrangian_dichotomic_search(mu, r, p, n, max_iter=100, tol=1e-6):
     best_y0 = None
     obj_vals = []
     lambdas = []
+    lbs = []
 
     # Bounds for lambda
     lambda_low = 0
-    lambda_up = (r[1] - r[0])/p
+    lambda_up = (r[1]-r[0]) / p
 
     for _ in range(max_iter): # index of loop is not used
-        lambda_val = (lambda_low + lambda_up) / 2
-        y, y0, obj_val = lagrangian_relaxation(n, mu, r, lambda_val, p)
+        lambda_val = ((lambda_low + lambda_up) / 2) + lambda_low
+        y, y0, obj_val, lower_bound = lagrangian_relaxation(n, mu, r, lambda_val, p)
 
         obj_vals.append(obj_val)
+        lbs.append(lower_bound)
         lambdas.append(lambda_val)
         if is_feasible(y, p):
             if obj_val < best_obj_val:
@@ -64,15 +68,16 @@ def lagrangian_dichotomic_search(mu, r, p, n, max_iter=100, tol=1e-6):
         if(lambda_up - lambda_low < tol):
             break
 
-    print(lambdas)
+    print(lbs)
     print(obj_vals)
-    plot_bounds(obj_vals, lambdas)
+    plot_bounds(obj_vals, lbs)
 
     return best_y[1:], best_y0, best_obj_val
 
-def plot_bounds(obj_vals, lambdas):
+def plot_bounds(obj_vals, lower_bound):
     
-    plt.plot(lambdas, obj_vals)
+    plt.plot(obj_vals, color='red')
+    plt.plot(lower_bound, color='blue')
     plt.xlabel("λ")
     plt.ylabel("Objective value")
     plt.title("Objective value as a function of λ")
