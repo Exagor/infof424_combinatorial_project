@@ -1,4 +1,5 @@
 gurobipy
 numpy
+matplotlib
 pandas
 tqdm

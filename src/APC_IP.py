@@ -67,7 +67,7 @@ def lagrangian_dichotomic_search(mu, r, p, n, max_iter=100, tol=1e-6):
         if(lambda_up - lambda_low < tol):
             break
 
-    #plot_bounds(obj_vals, lbs) # Uncomment to plot the bounds
+    # plot_bounds(obj_vals, lbs) # Uncomment to plot the bounds
 
     return best_y[1:], best_y0, best_obj_val
 
@@ -75,7 +75,8 @@ def plot_bounds(obj_vals, lower_bound):
     
     plt.plot(obj_vals, color='red')
     plt.plot(lower_bound, color='blue')
-    plt.xlabel("λ")
+    plt.xlabel("Iterations")
     plt.ylabel("Objective value")
-    plt.title("Objective value as a function of λ")
+    plt.legend(["Dual bound", "Primal bound"])
+    plt.grid(True)
     plt.show()

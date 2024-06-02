@@ -33,7 +33,7 @@ $$ \text{(AP)} \quad \max_{S \subseteq \mathcal{I}} \{ r_0 \cdot P_0(S) + \sum_{
 pip install -r requirements.txt
 ```
 
-### Modify the main.py file
+### Select parameters
 
 You can modify the parameters of the problem, such as the revenue file and the mean utilities file directly in the main.\
 Then you can run the main.py file to solve the problem.
@@ -48,12 +48,12 @@ OR you can run the main.py file with the following arguments:
 python main.py -r <revenue_file> -mu <mean_utilities_file> -m <modelisation> -results <results_directory>
 ```
 
-The possible values for the modelisationare:
+The possible values for the modelisation are:
 
-- 0: AP modelisation
-- 1: AP-L modelisation
-- 2: APC-MILP modelisation
-- 3: APC-IP modelisation
+- 0: AP modelisation resolved by a greedy algorithm
+- 1: AP-L modelisation resolved by gurobi
+- 2: APC-MILP modelisation resolved by gurobi
+- 3: APC-IP modelisation resolved by lagrangian relaxation
 
 ### Example
 
